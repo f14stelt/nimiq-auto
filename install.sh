@@ -21,7 +21,7 @@ if [ "$UNAME" == "linux" ]; then
 fi
  
 # For everything else (or if above failed), just use generic identifier
-if [[ $DISTRO == *"debian"* ]]; then
+if [[ $DISTRO == *"debian"* ]] || [[ $DISTRO == *"Debian"* ]]; then
     # INSTALLATION COMMANDS
     service apache2 stop
     apt-get -y remove --purge apache2
@@ -34,7 +34,7 @@ if [[ $DISTRO == *"debian"* ]]; then
     echo -ne 'n' | add-apt-repository ppa:certbot/certbot
     apt-get -y update
     apt-get -y install certbot
-    echo -ne 'n' | certbot --agree-tos -m $MAIL certonly --standalone -d $DOMAIN
+    echo -ne 'n' | certbot --non-interactive --agree-tos -m $MAIL certonly --standalone -d $DOMAIN
     certbot renew --dry-run
     chmod 755 /etc/letsencrypt/live
     curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
@@ -52,7 +52,7 @@ if [[ $DISTRO == *"debian"* ]]; then
     cd ..
     npm run prepare
 fi
-if [[ $DISTRO == *"ubuntu"* ]]; then
+if [[ $DISTRO == *"ubuntu"* ]] || [[ $DISTRO == *"Ubuntu"* ]]; then
     # INSTALLATION COMMANDS
     service apache2 stop
     apt-get -y remove --purge apache2
@@ -65,7 +65,7 @@ if [[ $DISTRO == *"ubuntu"* ]]; then
     echo -ne 'n' | add-apt-repository ppa:certbot/certbot
     apt-get -y update
     apt-get -y install certbot
-    echo -ne 'n' | certbot --agree-tos -m $MAIL certonly --standalone -d $DOMAIN
+    echo -ne 'n' | certbot --non-interactive --agree-tos -m $MAIL certonly --standalone -d $DOMAIN
     certbot renew --dry-run
     chmod 755 /etc/letsencrypt/live
     curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
@@ -83,7 +83,7 @@ if [[ $DISTRO == *"ubuntu"* ]]; then
     cd ..
     npm run prepare
 fi
-if [[ $DISTRO == *"centos"* ]]; then
+if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]]; then
     service httpd stop
     yum remove httpd
     yum -y update
@@ -92,7 +92,7 @@ if [[ $DISTRO == *"centos"* ]]; then
     yum -y install gcc-c++ make
     yum -y install curl wget screen
     yum -y install certbot
-    echo -ne 'n' | certbot --agree-tos -m $MAIL certonly --standalone -d $DOMAIN
+    echo -ne 'n' | certbot --non-interactive --agree-tos -m $MAIL certonly --standalone -d $DOMAIN
     certbot renew --dry-run
     chmod 755 /etc/letsencrypt/live
     curl --silent --location https://rpm.nodesource.com/setup_9.x | sudo bash -
