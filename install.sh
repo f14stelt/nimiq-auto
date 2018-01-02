@@ -52,7 +52,7 @@ if [[ $DISTRO == *"debian"* ]]; then
     cd ..
     npm run prepare
 fi
-if [[ $DISTRO == *"ubuntu"*]]; then
+if [[ $DISTRO == *"ubuntu"* ]]; then
     # INSTALLATION COMMANDS
     service apache2 stop
     apt-get -y remove --purge apache2
@@ -83,7 +83,7 @@ if [[ $DISTRO == *"ubuntu"*]]; then
     cd ..
     npm run prepare
 fi
-if [[ $DISTRO == *"centos"*]]; then
+if [[ $DISTRO == *"centos"* ]]; then
     service httpd stop
     yum remove httpd
     yum -y update
