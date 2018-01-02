@@ -51,6 +51,16 @@ if [[ $DISTRO == *"debian"* ]] || [[ $DISTRO == *"Debian"* ]]; then
     cd ..
     cd ..
     npm run prepare
+    # CREATE LAUNCH FILE
+    cd ~
+    touch start-miner.sh
+    echo "cd ~/core/clients/nodejs/" > start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    chmod 755 start-miner.sh
+     
+     
+    # LAUNCH MINER
+    ./start-miner.sh
 fi
 if [[ $DISTRO == *"ubuntu"* ]] || [[ $DISTRO == *"Ubuntu"* ]]; then
     # INSTALLATION COMMANDS
@@ -82,6 +92,16 @@ if [[ $DISTRO == *"ubuntu"* ]] || [[ $DISTRO == *"Ubuntu"* ]]; then
     cd ..
     cd ..
     npm run prepare
+    # CREATE LAUNCH FILE
+    cd ~
+    touch start-miner.sh
+    echo "cd ~/core/clients/nodejs/" > start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    chmod 755 start-miner.sh
+     
+     
+    # LAUNCH MINER
+    ./start-miner.sh
 fi
 if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]]; then
     service httpd stop
@@ -107,16 +127,15 @@ if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]]; then
     cd ..
     cd ..
     npm run prepare
+    # CREATE LAUNCH FILE
+    cd ~
+    touch start-miner.sh
+    echo "cd ~/core/clients/nodejs/" > start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    chmod 755 start-miner.sh
+     
+     
+    # LAUNCH MINER
+    ./start-miner.sh
+        
 fi
- 
- 
-# CREATE LAUNCH FILE
-cd ~
-touch start-miner.sh
-echo "cd ~/core/clients/nodejs/" > start-miner.sh
-echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
-chmod 755 start-miner.sh
- 
- 
-# LAUNCH MINER
-./start-miner.sh
