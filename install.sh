@@ -117,6 +117,7 @@ if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]]; then
     chmod 755 /etc/letsencrypt/live
     curl --silent --location https://rpm.nodesource.com/setup_9.x | sudo bash -
     yum -y install nodejs git
+    npm install -g gulp
     cd ~
     git clone https://github.com/nimiq-network/core
     cd core
