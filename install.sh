@@ -81,13 +81,13 @@ if [[ $DISTRO == *"ubuntu"* ]] || [[ $DISTRO == *"Ubuntu"* ]]; then
     curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
     bash nodesource_setup.sh
     apt-get -y install nodejs build-essential git
-    npm install -g gulp
+    sudo npm install -g gulp
     cd ~
     git clone https://github.com/nimiq-network/core
     cd core
     git checkout release
-    npm install
-    npm run build
+    sudo npm install
+    sudo npm run build
     cd clients/nodejs && npm install
     cd ..
     cd ..
