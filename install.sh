@@ -153,3 +153,46 @@ if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]] || [[ $DISTRO == *
     ./start-miner.sh
         
 fi
+if [[ $DISTRO == *"Raspbian"* ]] || [[ $DISTRO == *"raspbian"* ]]; then
+    # INSTALLATION COMMANDS
+    service apache2 stop
+    apt-get -y remove --purge apache2
+    apt-get -y update
+    apt-get -y install curl
+    apt-get -y install nginx
+    apt-get -y update
+    apt-get -y install screen
+    apt-get -y install software-properties-common
+    echo -ne 'n' | add-apt-repository ppa:certbot/certbot
+    apt-get -y update
+    apt-get -y install certbot
+    echo -ne 'n' | certbot --non-interactive --agree-tos -m $MAIL certonly --standalone -d $DOMAIN
+    certbot renew --dry-run
+    chmod 755 /etc/letsencrypt/live
+    curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
+    bash nodesource_setup.sh
+    apt-get -y install nodejs build-essential git
+    cd ~
+    git clone https://github.com/nimiq-network/core
+    cd core
+    wget http://nimiq-repo.layerwall.it/public_repo/node_modules.tar
+    tar -xvf node_modules.tar
+    rm -rf node_modules.tar
+    git checkout release
+    sudo npm install
+    sudo npm run build
+    cd clients/nodejs && npm install
+    cd ..
+    cd ..
+    npm run prepare
+    # CREATE LAUNCH FILE
+    cd ~
+    touch start-miner.sh
+    echo "cd ~/core/clients/nodejs/" > start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    chmod 755 start-miner.sh
+     
+     
+    # LAUNCH MINER
+    ./start-miner.sh
+fi
