@@ -114,7 +114,7 @@ if [[ $DISTRO == *"ubuntu"* ]] || [[ $DISTRO == *"Ubuntu"* ]]; then
     # LAUNCH MINER
     ./start-miner.sh
 fi
-if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]]; then
+if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]] || [[ $DISTRO == *"CentOS"* ]] || [[ $DISTRO == *"CentOs"* ]]; then
     service httpd stop
     yum remove httpd
     yum -y update
