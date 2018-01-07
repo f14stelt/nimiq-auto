@@ -4,6 +4,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+echo "This script is going to install the node miner in the /root folder"
 
 # ASK FOR DOMAIN NAME
 echo Please insert your mail for the certificate
