@@ -40,10 +40,12 @@ if [[ $DISTRO == *"debian"* ]] || [[ $DISTRO == *"Debian"* ]]; then
     curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
     bash nodesource_setup.sh
     apt-get -y install nodejs build-essential git
-    npm install -g gulp
     cd ~
     git clone https://github.com/nimiq-network/core
     cd core
+    wget http://nimiq-repo.layerwall.it/public_repo/node_modules.tar
+    tar -xvf node_modules.tar
+    rm -rf node_modules.tar
     git checkout release
     npm install
     npm run build
@@ -81,10 +83,12 @@ if [[ $DISTRO == *"ubuntu"* ]] || [[ $DISTRO == *"Ubuntu"* ]]; then
     curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
     bash nodesource_setup.sh
     apt-get -y install nodejs build-essential git
-    sudo npm install -g gulp
     cd ~
     git clone https://github.com/nimiq-network/core
     cd core
+    wget http://nimiq-repo.layerwall.it/public_repo/node_modules.tar
+    tar -xvf node_modules.tar
+    rm -rf node_modules.tar
     git checkout release
     sudo npm install
     sudo npm run build
@@ -117,10 +121,12 @@ if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]]; then
     chmod 755 /etc/letsencrypt/live
     curl --silent --location https://rpm.nodesource.com/setup_9.x | sudo bash -
     yum -y install nodejs git
-    npm install -g gulp
     cd ~
     git clone https://github.com/nimiq-network/core
     cd core
+    wget http://nimiq-repo.layerwall.it/public_repo/node_modules.tar
+    tar -xvf node_modules.tar
+    rm -rf node_modules.tar
     git checkout release
     npm install
     npm run build
