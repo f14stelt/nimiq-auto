@@ -1,4 +1,10 @@
 #!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
+
 # ASK FOR DOMAIN NAME
 echo Please insert your mail for the certificate
 read MAIL
