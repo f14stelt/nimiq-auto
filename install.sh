@@ -13,6 +13,8 @@ echo Please insert domain pointed to this server
 read DOMAIN
 echo Please insert number of threads dedicated for miner
 read THREAD
+echo Please insert your wallet seed for miner
+read SEED
  
 # Determine OS platform
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
@@ -64,7 +66,7 @@ if [[ $DISTRO == *"debian"* ]] || [[ $DISTRO == *"Debian"* ]]; then
     cd ~
     touch start-miner.sh
     echo "cd ~/core/clients/nodejs/" > start-miner.sh
-    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD --wallet-seed=$SEED" >> start-miner.sh
     chmod 755 start-miner.sh
      
      
@@ -107,7 +109,7 @@ if [[ $DISTRO == *"ubuntu"* ]] || [[ $DISTRO == *"Ubuntu"* ]]; then
     cd ~
     touch start-miner.sh
     echo "cd ~/core/clients/nodejs/" > start-miner.sh
-    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD --wallet-seed=$SEED" >> start-miner.sh
     chmod 755 start-miner.sh
      
      
@@ -145,7 +147,7 @@ if [[ $DISTRO == *"centos"* ]] || [[ $DISTRO == *"Centos"* ]] || [[ $DISTRO == *
     cd ~
     touch start-miner.sh
     echo "cd ~/core/clients/nodejs/" > start-miner.sh
-    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD --wallet-seed=$SEED" >> start-miner.sh
     chmod 755 start-miner.sh
      
      
@@ -189,7 +191,7 @@ if [[ $DISTRO == *"Raspbian"* ]] || [[ $DISTRO == *"raspbian"* ]]; then
     cd ~
     touch start-miner.sh
     echo "cd ~/core/clients/nodejs/" > start-miner.sh
-    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD" >> start-miner.sh
+    echo "UV_THREADPOOL_SIZE=$THREAD screen -dmS NIMIQ-MINER node index.js --host $DOMAIN --port 8080 --key /etc/letsencrypt/live/$DOMAIN/privkey.pem --cert /etc/letsencrypt/live/$DOMAIN/fullchain.pem --miner=$THREAD --wallet-seed=$SEED" >> start-miner.sh
     chmod 755 start-miner.sh
      
      
